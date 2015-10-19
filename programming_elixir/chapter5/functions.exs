@@ -32,4 +32,9 @@ fizzbuzz = fn
   _, _, a -> a
 end
 
+fb = fn n ->
+  fizzbuzz.(rem(n,3), rem(n, 5), n)
+end
+
 IO.inspect fizzbuzz.(0, 0, 1)
+IO.inspect [ fb.(10), fb.(11), fb.(12), fb.(13), fb.(14), fb.(15), fb.(16) ]

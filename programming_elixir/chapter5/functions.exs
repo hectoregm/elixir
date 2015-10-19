@@ -24,3 +24,12 @@ end
 
 IO.inspect handle_open.(File.open("foo"))
 IO.inspect handle_open.(File.open("functions.exs"))
+
+fizzbuzz = fn
+  0, 0, _ -> "FizzBuzz"
+  0, _, _ -> "Fizz"
+  _, 0, _ -> "Buzz"
+  _, _, a -> a
+end
+
+IO.inspect fizzbuzz.(0, 0, 1)

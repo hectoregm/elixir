@@ -27,4 +27,20 @@ defmodule Exercise do
   defp eval('-', a, b), do: a - b
   defp eval('*', a, b), do: a * b
   defp eval('/', a, b), do: div(a, b)
+
+  def center(lst = [ _str | _rest ]) do
+    lstring = Enum.max_by lst, fn str -> String.length str end
+    len = String.length lstring
+    _center(lst, len)
+  end
+
+  defp _center([], _) do
+  end
+  defp _center([ str | rest ], line_length) do
+    str_length = String.length str
+    padding = line_length - str_length
+    lpadding = trunc Float.floor(padding / 2)
+    IO.puts String.ljust(String.rjust(str, str_length + lpadding), str_length + padding)
+    _center(rest, line_length)
+  end
 end

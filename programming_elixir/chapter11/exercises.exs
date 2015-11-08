@@ -43,4 +43,25 @@ defmodule Exercise do
     IO.puts String.ljust(String.rjust(str, str_length + lpadding), str_length + padding)
     _center(rest, line_length)
   end
+
+  def capitalize_sentences(str), do: _capitalize_sentences(str, "", "")
+
+  defp _capitalize_sentences(<< 46 :: utf8, 32 :: utf8, tail :: binary >>, sentence, result) do
+    _capitalize_sentences(tail, "", result <> String.capitalize(sentence <> ". "))
+  end
+
+  defp _capitalize_sentences(<< head :: utf8, tail :: binary >>, sentence, result) do
+    _capitalize_sentences(tail, sentence <> << head :: utf8 >>, result)
+  end
+
+  defp _capitalize_sentences("", "", result) do
+    result
+  end
+
+  defp _each(<< head :: utf8, tail :: binary >>, func) do
+    func.(head)
+    _each(tail, func)
+  end
+
+  defp _each(<<>>, _func), do: []
 end

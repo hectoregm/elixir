@@ -1,0 +1,2 @@
+defmodule FizzBuzz do
+end

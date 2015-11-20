@@ -24,7 +24,7 @@ defmodule Issues.CLI do
                                aliases: [h: :help])
     case parse do
       { [help: true], _, _ } ->
-        help
+        :help
       { _, [user, project, count], _ } ->
         { user, project, count }
       { _, [user, project], _ } ->

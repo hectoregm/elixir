@@ -11,9 +11,9 @@ defmodule Issues.GithubIssues do
   end
 
   def handle_response({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
-    { :ok, body }
+    { :ok, :jsx.decode(body) }
   end
   def handle_response({:error, %HTTPoison.Error{reason: reason}}) do
-    { :error, reason }
+    { :error, :jsx.decode(reason) }
   end
 end

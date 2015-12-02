@@ -23,4 +23,19 @@ defmodule Issues.TableFormatter do
   def widths_of(columns) do
     for column <- columns, do: column |> map(&String.length/1) |> max
   end
+
+  def format_for(column_widths) do
+    map_join(column_withs, "-+-", fn width -> List.duplicate("-", width) end)
+  end
+
+  def puts_in_columns(data_by_columns, format) do
+    data_by_columns
+    |> List.zip
+    |> map(&Tuple.to_list/1)
+    |> each(&puts_one_line_in_columns(&1, format))
+  end
+
+  def puts_one_line_in_columns(field, format) do
+    :io.format(format, fields)
+  end
 end

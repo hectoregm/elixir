@@ -26,4 +26,8 @@ defmodule TableFormatterTest do
     widths = TF.widths_of(split_with_three_columns)
     assert widths == [ 5, 6, 7 ]
   end
+
+  test "correct format string returned" do
+    assert TF.format_for([9, 10, 11]) == "~-9s | ~-10s | ~-11s~n"
+  end
 end

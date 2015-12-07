@@ -68,4 +68,10 @@ defmodule Issues.CLI do
     IO.puts "Error fetching from Github: #{message}"
     System.halt(2)
   end
+
+  def main(argv) do
+    argv
+    |> parse_args
+    |> process
+  end
 end

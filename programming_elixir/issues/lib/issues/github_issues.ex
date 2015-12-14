@@ -21,7 +21,7 @@ defmodule Issues.GithubIssues do
     { :ok, :jsx.decode(body) }
   end
   def handle_response({:error, %HTTPoison.Error{reason: reason}}) do
-    Logger.error "Error #{status} returned"
+    Logger.error "Error #{reason} returned"
     { :error, :jsx.decode(reason) }
   end
 end

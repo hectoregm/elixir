@@ -28,10 +28,10 @@ defmodule Issues.TableFormatter do
 
   ## Example
 
-      iex> list = [Enum.into([{"a", "1"},{"b", "2"},{"c", "3"}], HashDict.new),
-      ...>         Enum.into([{"a", "4"},{"b", "5"},{"c", "6"}], HashDict.new)]
-      iex> Issues.TableFormatter.split_into_columns(list, [ "a", "b", "c" ])
-      [ ["1", "4"], ["2", "5"], ["3", "6"] ]
+  iex> list = [Enum.into([{"a", "1"},{"b", "2"},{"c", "3"}], HashDict.new),
+  ...>         Enum.into([{"a", "4"},{"b", "5"},{"c", "6"}], HashDict.new)]
+  iex> Issues.TableFormatter.split_into_columns(list, [ "a", "b", "c" ])
+  [ ["1", "4"], ["2", "5"], ["3", "6"] ]
 
   """
   def split_into_columns(rows, headers) do
@@ -43,14 +43,23 @@ defmodule Issues.TableFormatter do
   @doc """
   Return a binary (string) version of our parameter.
   ## Examples
-      iex> Issues.TableFormatter.printable("a")
-      "a"
-      iex> Issues.TableFormatter.printable(99)
-      "99"
+  iex> Issues.TableFormatter.printable("a")
+  "a"
+  iex> Issues.TableFormatter.printable(99)
+  "99"
   """
   def printable(str) when is_binary(str), do: str
   def printable(str), do: to_string(str)
 
+  @doc """
+  Given a list containing sublists, where each sublist contains the data for
+  a column, return a list containing the maximum width of each column
+
+  ## Example
+  iex> data = [ [ "cat", "wombat", "elk"], ["mongoose", "ant", "gnu"]]
+  iex> Issues.TableFormatter.widths_of(data)
+  [ 6, 8 ]
+  """
   def widths_of(columns) do
     for column <- columns, do: column |> map(&String.length/1) |> max
   end

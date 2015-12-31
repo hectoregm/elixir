@@ -1,4 +1,4 @@
-defmodule Exercise1 do
+defmodule Exercise3 do
   import :timer, only: [ sleep: 1 ]
 
   def sad_function(parent) do
@@ -19,10 +19,10 @@ defmodule Exercise1 do
 
   def run do
     Process.flag(:trap_exit, true)
-    spawn_link(Exercise1, :sad_function, [self])
+    spawn_link(Exercise3, :sad_function, [self])
     sleep 500
     receive_messages
   end
 end
 
-Exercise1.run
+Exercise3.run

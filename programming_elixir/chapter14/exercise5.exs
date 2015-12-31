@@ -3,8 +3,8 @@ defmodule Exercise5 do
 
   def sad_function(parent) do
     send parent, "BOOM!"
-    #raise "Boom Exception"
-    exit(:boom)
+    raise "Boom Exception"
+    #exit(:boom)
   end
 
   def receive_messages do
@@ -19,7 +19,7 @@ defmodule Exercise5 do
   end
 
   def run do
-    Process.flag(:trap_exit, true)
+    #Process.flag(:trap_exit, true)
     spawn_monitor(Exercise5, :sad_function, [self])
     sleep 500
     receive_messages

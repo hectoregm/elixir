@@ -19,7 +19,7 @@ defmodule Exercise4 do
   end
 
   def run do
-    Process.flag(:trap_exit, true)
+    #Process.flag(:trap_exit, true)
     spawn_link(Exercise4, :sad_function, [self])
     sleep 500
     receive_messages

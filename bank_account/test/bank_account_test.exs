@@ -19,6 +19,10 @@ defmodule BankAccountTest do
   use ExUnit.Case
   doctest BankAccount
 
+  test "has balance incremented by the amount of a deposit" do
+    
+  end
+
   test "starts off with a balance of 0" do
     account = spawn_link(BankAccount, :start, [])
     verify_balance_is 0, account
